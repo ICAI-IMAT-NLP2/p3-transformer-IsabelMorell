@@ -30,7 +30,7 @@ class AttentionHead(nn.Module):
         self.wk: nn.Linear = nn.Linear(d_model, d_k)
         self.wv: nn.Linear = nn.Linear(d_model, d_v)
 
-    def scaled_dot_product_attention(self, q, k, v, mask=None):
+    def scaled_dot_product_attention(self, q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, mask=None) -> tuple[torch.Tensor, torch.Tensor]:
         """Calculate the attention weights with optional causal mask.
 
         Args:
@@ -66,7 +66,7 @@ class AttentionHead(nn.Module):
 
         return output, weights
 
-    def forward(self, x_q, x_k, x_v, mask=None):
+    def forward(self, x_q: torch.Tensor, x_k: torch.Tensor, x_v: torch.Tensor, mask=None) -> torch.Tensor:
         """Forward pass for the attention head with optional causal mask.
 
         Args:
